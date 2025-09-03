@@ -9,6 +9,7 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     target: 'es2015',
+    minify: false,
     rollupOptions: {
       output: {
         manualChunks: undefined,
