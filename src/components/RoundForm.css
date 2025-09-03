@@ -793,47 +793,39 @@
 }
 
 /* 반응형 디자인 */
+/* 모바일 최적화 */
 @media (max-width: 768px) {
   .round-form {
-    padding: 16px;
+    padding: 12px;
+    margin: 0;
   }
   
-  .scorecard-row {
-    grid-template-columns: 60px repeat(9, 1fr) 80px;
-    font-size: 0.8rem;
+  .form-header h2 {
+    font-size: 1.5rem;
   }
   
-  .cell {
-    padding: 8px 4px;
-    min-height: 40px;
-  }
-  
-  .score-input {
-    width: 40px;
-    padding: 4px 6px;
-    font-size: 0.8rem;
-    margin: 0 auto;
-  }
-  
-  .putt-input {
-    width: 35px;
-    padding: 4px 6px;
-    font-size: 0.8rem;
-    margin: 0 auto;
-  }
-  
-
-  
-  .total-summary {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+  .form-header p {
+    font-size: 1rem;
   }
   
   .course-info,
   .scorecard-container,
   .club-usage-container {
     padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .course-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px; /* iOS 줌 방지 */
   }
   
   .companion-input {
@@ -843,28 +835,78 @@
   
   .companion-input input {
     margin-bottom: 8px;
+    padding: 12px 14px;
+    font-size: 16px; /* iOS 줌 방지 */
   }
   
   .remove-btn {
     align-self: center;
+    padding: 10px;
+  }
+  
+  .add-companion-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+  
+  .scorecard-row {
+    grid-template-columns: 50px repeat(9, 1fr) 70px;
+    font-size: 0.75rem;
+  }
+  
+  .cell {
+    padding: 6px 2px;
+    min-height: 35px;
+  }
+  
+  .score-input {
+    width: 35px;
+    padding: 6px 4px;
+    font-size: 0.8rem;
+    margin: 0 auto;
+  }
+  
+  .putt-input {
+    width: 30px;
+    padding: 6px 4px;
+    font-size: 0.8rem;
+    margin: 0 auto;
+  }
+  
+  .total-summary {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .total-item {
+    gap: 4px;
+  }
+  
+  .total-label {
+    font-size: 0.8rem;
+  }
+  
+  .total-value {
+    font-size: 1.2rem;
   }
   
   .club-usage {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 12px;
   }
   
-  @media (max-width: 480px) {
-    .club-usage {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
+  .hole-detail-card {
+    padding: 16px;
+    margin-bottom: 16px;
   }
   
   .hole-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
   }
   
   .hole-kpis {
@@ -882,24 +924,132 @@
   
   .hole-title-row {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
   }
   
   .hole-score-info {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
+    gap: 4px;
   }
   
   .par-info {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   
   .hole-score {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .score-status {
+    font-size: 0.75rem;
+  }
+  
+  .driver-result-select,
+  .wood-result-select,
+  .iron-number-select {
+    padding: 12px;
+    font-size: 16px; /* iOS 줌 방지 */
+  }
+  
+  .putt-score {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .putt-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .round-form {
+    padding: 8px;
+  }
+  
+  .form-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .course-info,
+  .scorecard-container,
+  .club-usage-container {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .scorecard-row {
+    grid-template-columns: 40px repeat(9, 1fr) 60px;
+    font-size: 0.7rem;
+  }
+  
+  .cell {
+    padding: 4px 1px;
+    min-height: 30px;
+  }
+  
+  .score-input {
+    width: 30px;
+    padding: 4px 2px;
+    font-size: 0.7rem;
+  }
+  
+  .putt-input {
+    width: 25px;
+    padding: 4px 2px;
+    font-size: 0.7rem;
+  }
+  
+  .club-usage {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .hole-detail-card {
+    padding: 12px;
+  }
+  
+  .hole-header h4 {
+    font-size: 1rem;
+  }
+  
+  .par-info {
+    font-size: 0.75rem;
+  }
+  
+  .hole-score {
     font-size: 0.8rem;
+  }
+  
+  .score-status {
+    font-size: 0.7rem;
+  }
+  
+  .driver-result-select,
+  .wood-result-select,
+  .iron-number-select {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .putt-score {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .putt-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
   }
 }

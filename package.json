@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "postbuild": "sed -i '' 's/type=\"module\" crossorigin//g' dist/index.html",
+    "postbuild": "sed -i '' 's/type=\"module\" crossorigin//g' dist/index.html && cp dist/index.html dist/404.html && touch dist/.nojekyll",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
