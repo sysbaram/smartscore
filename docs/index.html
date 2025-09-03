@@ -10,6 +10,24 @@
   </head>
   <body>
     <div id="root"></div>
-    
+    <script>
+      console.log('HTML loaded successfully');
+      console.log('Root element:', document.getElementById('root'));
+      console.log('JavaScript file path:', './assets/index.js');
+      
+      // JavaScript 파일 로드 확인
+      const script = document.querySelector('script[src="./assets/index.js"]');
+      if (script) {
+        console.log('Script element found:', script);
+        script.onload = function() {
+          console.log('JavaScript file loaded successfully');
+        };
+        script.onerror = function() {
+          console.error('Failed to load JavaScript file');
+        };
+      } else {
+        console.error('Script element not found');
+      }
+    </script>
   </body>
 </html>
