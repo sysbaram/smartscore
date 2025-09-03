@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .success { background: rgba(0, 255, 0, 0.2); }
+        .error { background: rgba(255, 0, 0, 0.2); }
+        .warning { background: rgba(255, 255, 0, 0.2); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript 로드 테스트</h1>
+        <div id="results"></div>
+        <button onclick="testJavaScript()" style="padding: 10px 20px; margin-top: 20px; background: #8bc34a; color: white; border: none; border-radius: 5px; cursor: pointer;">JavaScript 테스트 실행</button>
+    </div>
+    
+    <script>
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            results.appendChild(div);
+        }
+        
+        function testJavaScript() {
+            document.getElementById('results').innerHTML = '';
+            
+            addResult('JavaScript 테스트 시작...', 'info');
+            
+            // 기본 JavaScript 테스트
+            try {
+                addResult('✅ 기본 JavaScript 실행 가능', 'success');
+            } catch (e) {
+                addResult('❌ 기본 JavaScript 실행 실패: ' + e.message, 'error');
+            }
+            
+            // DOM 조작 테스트
+            try {
+                const testDiv = document.createElement('div');
+                testDiv.textContent = 'DOM 조작 테스트';
+                document.body.appendChild(testDiv);
+                document.body.removeChild(testDiv);
+                addResult('✅ DOM 조작 가능', 'success');
+            } catch (e) {
+                addResult('❌ DOM 조작 실패: ' + e.message, 'error');
+            }
+            
+            // fetch API 테스트
+            try {
+                if (typeof fetch !== 'undefined') {
+                    addResult('✅ Fetch API 사용 가능', 'success');
+                } else {
+                    addResult('⚠️ Fetch API 사용 불가', 'warning');
+                }
+            } catch (e) {
+                addResult('❌ Fetch API 테스트 실패: ' + e.message, 'error');
+            }
+            
+            // React 앱 JavaScript 파일 로드 테스트
+            const script = document.createElement('script');
+            script.src = './assets/index.js';
+            script.onload = function() {
+                addResult('✅ React 앱 JavaScript 파일 로드 성공', 'success');
+                
+                // React가 로드되었는지 확인
+                setTimeout(function() {
+                    if (typeof React !== 'undefined') {
+                        addResult('✅ React 라이브러리 로드됨', 'success');
+                    } else {
+                        addResult('⚠️ React 라이브러리 로드되지 않음', 'warning');
+                    }
+                }, 1000);
+            };
+            script.onerror = function() {
+                addResult('❌ React 앱 JavaScript 파일 로드 실패', 'error');
+            };
+            document.head.appendChild(script);
+        }
+        
+        // 페이지 로드 시 자동 테스트
+        window.onload = function() {
+            addResult('페이지 로드 완료', 'info');
+            addResult('JavaScript 테스트 버튼을 클릭하세요', 'info');
+        };
+    </script>
+</body>
+</html>
