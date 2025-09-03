@@ -10,6 +10,21 @@
   </head>
   <body>
     <div id="root"></div>
-    
+    <script>
+      console.log('HTML loaded successfully');
+      console.log('Root element:', document.getElementById('root'));
+      console.log('JavaScript file path:', './assets/index.js');
+      
+      // JavaScript 파일 로딩 테스트
+      const script = document.createElement('script');
+      script.src = './assets/index.js';
+      script.onload = function() {
+        console.log('JavaScript file loaded successfully');
+      };
+      script.onerror = function() {
+        console.error('Failed to load JavaScript file');
+      };
+      document.head.appendChild(script);
+    </script>
   </body>
 </html>
