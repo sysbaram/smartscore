@@ -6,12 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmartScore - 골프 스코어 관리 시스템</title>
     <meta name="description" content="골프 라운드 스코어를 체계적으로 관리하고 분석할 수 있는 웹 애플리케이션" />
-    
     <link rel="stylesheet" href="./assets/index.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="text-align: center; padding: 50px; color: white; background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <h1 style="color: #8bc34a; margin-bottom: 20px;">SmartScore 로딩 중...</h1>
+        <p>JavaScript가 로드되지 않으면 이 메시지가 계속 표시됩니다.</p>
+        <div style="margin-top: 20px;">
+          <a href="./test-simple.html" style="color: #8bc34a; text-decoration: none; padding: 10px 20px; border: 1px solid #8bc34a; border-radius: 5px;">테스트 페이지</a>
+        </div>
+      </div>
+    </div>
     
-      <script src="./assets/index.js"></script>
+    <script>
+      console.log('HTML loaded successfully');
+      console.log('Root element:', document.getElementById('root'));
+      console.log('JavaScript file path:', './assets/index.js');
+      
+      // JavaScript 파일 로드 확인
+      const script = document.createElement('script');
+      script.src = './assets/index.js';
+      script.onload = function() {
+        console.log('JavaScript file loaded successfully');
+      };
+      script.onerror = function() {
+        console.error('Failed to load JavaScript file');
+        document.getElementById('root').innerHTML = `
+          <div style="text-align: center; padding: 50px; color: white; background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <h1 style="color: #ff6b6b; margin-bottom: 20px;">JavaScript 로드 실패</h1>
+            <p>JavaScript 파일을 로드할 수 없습니다.</p>
+            <p>파일 경로: ./assets/index.js</p>
+            <div style="margin-top: 20px;">
+              <a href="./test-simple.html" style="color: #8bc34a; text-decoration: none; padding: 10px 20px; border: 1px solid #8bc34a; border-radius: 5px;">테스트 페이지</a>
+            </div>
+          </div>
+        `;
+      };
+      document.head.appendChild(script);
+    </script>
   </body>
 </html>
