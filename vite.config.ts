@@ -3,23 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    {
-      name: 'remove-module-type',
-      generateBundle(options, bundle) {
-        for (const fileName in bundle) {
-          if (fileName.endsWith('.html')) {
-            const htmlBundle = bundle[fileName] as any;
-            htmlBundle.source = htmlBundle.source.replace(
-              '<script type="module" crossorigin',
-              '<script'
-            );
-          }
-        }
-      },
-    },
-  ],
+  plugins: [react()],
   base: '',
   build: {
     outDir: 'dist',
@@ -28,7 +12,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: undefined,
-        format: 'iife',
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]',
