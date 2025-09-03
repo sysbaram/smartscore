@@ -75,18 +75,22 @@ const UserProfile: React.FC = () => {
             <>
               <button onClick={handleSave} className="save-btn" title="저장">
                 <Save size={16} />
+                <span>저장</span>
               </button>
               <button onClick={handleCancel} className="cancel-btn" title="취소">
                 <X size={16} />
+                <span>취소</span>
               </button>
             </>
           ) : (
             <button onClick={() => setIsEditing(true)} className="edit-btn" title="수정">
               <Edit3 size={16} />
+              <span>수정</span>
             </button>
           )}
           <button onClick={logout} className="logout-btn" title="로그아웃">
             <LogOut size={16} />
+            <span>로그아웃</span>
           </button>
         </div>
       </div>
