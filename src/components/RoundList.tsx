@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GolfRound } from '../types/golf';
 import { format } from 'date-fns';
-import { Search, Filter, Trash2, Eye, Calendar, MapPin, Users, Target, Flag } from 'lucide-react';
+import { Search, Trash2, Eye, Calendar, MapPin, Users, Target, Flag } from 'lucide-react';
 import './RoundList.css';
 
 interface RoundListProps {
@@ -85,12 +85,7 @@ const RoundList: React.FC<RoundListProps> = ({ rounds, onDeleteRound }) => {
     return 'score-birdie';
   };
 
-  const getScoreDisplay = (score: number) => {
-    if (score === 0) return 'PAR';
-    if (score === 1) return 'BOGEY';
-    if (score >= 2) return 'DOUBLE+';
-    return 'BIRDIE';
-  };
+
 
   const calculateToParTotal = (startHole: number, endHole: number, holes: any[]) => {
     return holes

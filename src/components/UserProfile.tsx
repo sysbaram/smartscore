@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { User, Settings, LogOut, Edit3, Save, X } from 'lucide-react';
+import { User, LogOut, Edit3, Save, X } from 'lucide-react';
 import './UserProfile.css';
 
 const UserProfile: React.FC = () => {

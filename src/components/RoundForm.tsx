@@ -176,22 +176,7 @@ const RoundForm: React.FC<RoundFormProps> = ({ onAddRound }) => {
     setHoles(newHoles);
   };
 
-  const updatePutt = (holeIndex: number, puttCount: number) => {
-    // 최소값 0, 최대값 6으로 제한
-    const clampedPuttCount = Math.max(0, Math.min(6, puttCount));
-    
-    setHoles(prevHoles => {
-      const newHoles = [...prevHoles];
-      newHoles[holeIndex] = {
-        ...newHoles[holeIndex],
-        putt: { ...newHoles[holeIndex].putt, puttCount: clampedPuttCount }
-      };
-      return newHoles;
-    });
-    
-    // 퍼터 변경 시 스코어 재계산
-    setTimeout(() => recalculateHoleScore(holeIndex), 0);
-  };
+
 
   const incrementPutt = (holeIndex: number) => {
     setHoles(prevHoles => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { GolfRound } from './types/golf';
 import { useAuth } from './contexts/AuthContext';
 import RoundForm from './components/RoundForm';
