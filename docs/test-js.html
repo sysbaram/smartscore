@@ -34,7 +34,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>JavaScript 로드 테스트</h1>
+        <h1>JavaScript 로드 테스트 (React CDN 포함)</h1>
         <div id="results"></div>
         <button onclick="testJavaScript()" style="padding: 10px 20px; margin-top: 20px; background: #8bc34a; color: white; border: none; border-radius: 5px; cursor: pointer;">JavaScript 테스트 실행</button>
     </div>
@@ -82,25 +82,48 @@
                 addResult('❌ Fetch API 테스트 실패: ' + e.message, 'error');
             }
             
-            // React 앱 JavaScript 파일 로드 테스트
-            const script = document.createElement('script');
-            script.src = './assets/index.js';
-            script.onload = function() {
-                addResult('✅ React 앱 JavaScript 파일 로드 성공', 'success');
+            // React CDN 로드 테스트
+            const reactScript = document.createElement('script');
+            reactScript.src = 'https://unpkg.com/react@18/umd/react.production.min.js';
+            reactScript.crossOrigin = 'anonymous';
+            reactScript.onload = function() {
+                addResult('✅ React CDN 로드 성공', 'success');
                 
-                // React가 로드되었는지 확인
-                setTimeout(function() {
-                    if (typeof React !== 'undefined') {
-                        addResult('✅ React 라이브러리 로드됨', 'success');
-                    } else {
-                        addResult('⚠️ React 라이브러리 로드되지 않음', 'warning');
-                    }
-                }, 1000);
+                const reactDOMScript = document.createElement('script');
+                reactDOMScript.src = 'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js';
+                reactDOMScript.crossOrigin = 'anonymous';
+                reactDOMScript.onload = function() {
+                    addResult('✅ ReactDOM CDN 로드 성공', 'success');
+                    
+                    // React 앱 JavaScript 파일 로드 테스트
+                    const appScript = document.createElement('script');
+                    appScript.src = './assets/index.js';
+                    appScript.onload = function() {
+                        addResult('✅ React 앱 JavaScript 파일 로드 성공', 'success');
+                        
+                        // React가 로드되었는지 확인
+                        setTimeout(function() {
+                            if (typeof React !== 'undefined' && typeof ReactDOM !== 'undefined') {
+                                addResult('✅ React 및 ReactDOM 라이브러리 로드됨', 'success');
+                            } else {
+                                addResult('⚠️ React 라이브러리 로드되지 않음', 'warning');
+                            }
+                        }, 1000);
+                    };
+                    appScript.onerror = function() {
+                        addResult('❌ React 앱 JavaScript 파일 로드 실패', 'error');
+                    };
+                    document.head.appendChild(appScript);
+                };
+                reactDOMScript.onerror = function() {
+                    addResult('❌ ReactDOM CDN 로드 실패', 'error');
+                };
+                document.head.appendChild(reactDOMScript);
             };
-            script.onerror = function() {
-                addResult('❌ React 앱 JavaScript 파일 로드 실패', 'error');
+            reactScript.onerror = function() {
+                addResult('❌ React CDN 로드 실패', 'error');
             };
-            document.head.appendChild(script);
+            document.head.appendChild(reactScript);
         }
         
         // 페이지 로드 시 자동 테스트

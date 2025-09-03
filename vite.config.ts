@@ -16,7 +16,13 @@ export default defineConfig({
         entryFileNames: 'assets/[name].js',
         chunkFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name].[ext]',
+        format: 'iife',
+        globals: {
+          'react': 'React',
+          'react-dom': 'ReactDOM'
+        }
       },
+      external: ['react', 'react-dom']
     },
   },
 })
